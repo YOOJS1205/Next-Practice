@@ -1,17 +1,17 @@
 import Head from "next/head";
-import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
-export async function getServerSideProps() {
-  console.log("server");
+export async function getStaticProps() {
+  console.log("static");
   return {
     props: {
       time: new Date().toISOString(),
+      revalidate: 1,
     },
   };
 }
 
-export default function Home({ time }) {
+export default function ISR({ time }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -23,15 +23,6 @@ export default function Home({ time }) {
         <h1 className={styles.title}>
           {/* Welcome to <a href="https://nextjs.org">Next.js!</a> */}
           {time}
-        </h1>
-        <h1>
-          <Link href="/csr">CSR로 이동!</Link>
-        </h1>
-        <h1>
-          <Link href="/ssg">SSG로 이동!</Link>
-        </h1>
-        <h1>
-          <Link href="/ssg">ISR로 이동!</Link>
         </h1>
       </main>
 
