@@ -1,17 +1,7 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Head from 'next/head';
+import styles from '../../styles/Home.module.css';
 
-export async function getStaticProps() {
-  console.log("static");
-  return {
-    props: {
-      time: new Date().toISOString(),
-      revalidate: 1,
-    },
-  };
-}
-
-export default function ISR({ time }) {
+export default function Layout({ children }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -19,12 +9,7 @@ export default function ISR({ time }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1 className={styles.title}>
-          {/* Welcome to <a href="https://nextjs.org">Next.js!</a> */}
-          {time}
-        </h1>
-      </main>
+      <main>{children}</main>
 
       <footer>
         <a
@@ -32,7 +17,7 @@ export default function ISR({ time }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
         </a>
       </footer>

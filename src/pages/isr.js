@@ -1,7 +1,17 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Head from 'next/head';
+import styles from '../../styles/Home.module.css';
 
-export default function Layout({ children }) {
+export async function getStaticProps() {
+  console.log('static');
+  return {
+    props: {
+      time: new Date().toISOString(),
+      revalidate: 1,
+    },
+  };
+}
+
+export default function ISR({ time }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -9,7 +19,12 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>{children}</main>
+      <main>
+        <h1 className={styles.title}>
+          {/* Welcome to <a href="https://nextjs.org">Next.js!</a> */}
+          {time}
+        </h1>
+      </main>
 
       <footer>
         <a
@@ -17,12 +32,23 @@ export default function Layout({ children }) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          Powered by{' '}
           <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
         </a>
       </footer>
 
-      <style jsx>{`
+      <style jsx global>{`
+        html,
+        body {
+          padding: 0;
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+            sans-serif;
+        }
+        * {
+          box-sizing: border-box;
+        }
         main {
           padding: 5rem 0;
           flex: 1;
@@ -56,20 +82,6 @@ export default function Layout({ children }) {
           font-size: 1.1rem;
           font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
             DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
         }
       `}</style>
     </div>

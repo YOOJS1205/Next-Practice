@@ -1,9 +1,9 @@
-import Head from "next/head";
-import Link from "next/link";
-import styles from "../styles/Home.module.css";
+import Head from 'next/head';
+import Link from 'next/link';
+import styles from '../../styles/Home.module.css';
 
 export async function getServerSideProps() {
-  console.log("server");
+  console.log('server');
   return {
     props: {
       time: new Date().toISOString(),
@@ -25,7 +25,7 @@ export default function Home({ time }) {
         <Link href="/ssg">SSG로 이동!</Link>
       </h1>
       <h1>
-        <Link href="/ssg">ISR로 이동!</Link>
+        <Link href="/isr">ISR로 이동!</Link>
       </h1>
     </>
   );
