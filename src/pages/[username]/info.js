@@ -3,15 +3,15 @@ import styles from '../../../styles/Home.module.css';
 import SubLayout from 'components/SubLayout';
 import Layout from 'components/Layout';
 
-export default function FirstItem() {
+export default function UsernameInfo() {
   return (
     <>
-      <h1 className={styles.title}>First Item</h1>
+      <h1 className={styles.title}>Username Info</h1>
     </>
   );
 }
 
-FirstItem.getLayout = function getLayout(page) {
+UsernameInfo.getLayout = function getLayout(page) {
   return (
     <Layout>
       <SubLayout>{page}</SubLayout>
